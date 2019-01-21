@@ -1,0 +1,41 @@
+section {
+  background-color: #dfdede;
+  border-radius: .3em;
+  border-style: solid;
+  border-color: #b9b9b9;
+  border-width: 1px;
+  margin-top: 7em;
+}
+main h2 {
+  text-align: left;
+  margin-left: .5em;
+  /* padding-top: .5em; */
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+main hr {
+  margin-left: .5em;
+  margin-right: .5em;
+  height: 1px;
+  background-color: #000;
+  margin-top: 1px;
+}
+
+form {
+  padding: .5em;
+}
+
+textarea {
+  width: 100%;
+  padding: .25em;
+  color: #00a087;
+}
+
+input {
+  float: left;
+}
+
+span .counter {
+  text-align: right;
+}
