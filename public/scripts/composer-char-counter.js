@@ -7,6 +7,9 @@ $(document).ready(function() {
   $(textArea).keyup(function() {
     let inputLength = this.value.length;
     $(counter)[0].innerText = 140 - inputLength
+    if (inputLength > 140) {
+      $(counter).css('color', 'red')
+    }
   })
 
 });
