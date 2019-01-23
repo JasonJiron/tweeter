@@ -53,7 +53,6 @@ const data = [
 // let newTweet = tweetData.content.text
 
 let createTweetElement = (tweets) => {
-  // add to the dom 
   tweets.forEach((tweet) => {
     $('#all-tweets').append(createArticle(tweet))
   })
@@ -82,5 +81,10 @@ let createArticle = ({user:{name, avatars, handle}, content, created_at}) => {
   </article>` 
 }
 
-
 createTweetElement(data)
+
+$('form').submit(function(ev) {
+  ev.preventDefault();
+  let newTweetText = $('form').serialize();
+  $.post('/tweets', newTweetText)
+});
