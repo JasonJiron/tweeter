@@ -52,7 +52,7 @@ const data = [
 
 // let newTweet = tweetData.content.text
 
-let createTweetElement = (tweets) => {
+let renderTweets = (tweets) => {
   tweets.forEach((tweet) => {
     $('#all-tweets').append(createArticle(tweet))
   })
@@ -81,10 +81,23 @@ let createArticle = ({user:{name, avatars, handle}, content, created_at}) => {
   </article>` 
 }
 
-createTweetElement(data)
+renderTweets(data)
 
-$('form').submit(function(ev) {
-  ev.preventDefault();
+
+
+$('form').submit((event) => {
+  event.preventDefault();
   let newTweetText = $('form').serialize();
   $.post('/tweets', newTweetText)
 });
+
+let loadTweets = (cb) => {
+  $.get('/tweets').then((data) => {
+    console.log(data);
+    cb(data)
+  });
+}
+
+loadTweets((data) => {
+  renderTweets(data)
+})
