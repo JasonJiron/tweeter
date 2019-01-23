@@ -51,6 +51,7 @@ article.tweet {
   border:solid 1px #b9b9b9;
   border-radius: .3em; 
   opacity: .85;
+  margin-bottom: 1.5em;
 }
 
 header.tweet-header {
@@ -86,7 +87,7 @@ article.tweet img {
   margin: .5em;
 }
 
-article.tweet p#user-tweet {
+p.user-tweet {
   font-size: 1.3em;
   text-align: left;
   padding-left: .5em;
@@ -95,7 +96,7 @@ article.tweet p#user-tweet {
   border-bottom: solid 1px #b9b9b9;
 }
 
-p#user-tweet {
+p.user-tweet {
   margin: 0;
 }
 

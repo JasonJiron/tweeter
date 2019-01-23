@@ -23,7 +23,7 @@ body {
 
 main {
   width: 450px;
-  height: 800px;
+  height: 100%;
   text-align: right;
   margin: auto;
   background-color: #fff;
