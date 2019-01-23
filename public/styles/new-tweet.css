@@ -50,6 +50,7 @@ span .counter {
 article.tweet {
   border:solid 1px #b9b9b9;
   border-radius: .3em; 
+  opacity: .85;
 }
 
 header.tweet-header {
@@ -121,3 +122,17 @@ article.tweet:hover .icons {
   display: flex;
 }
 
+article.tweet:hover {
+  border: solid 1px #b9b9b9;
+  box-shadow: 1.5px 1.5px #969696;
+  opacity: 1;
+}
+
+div.icons {
+  color: #00a087;
+}
+
+.fa-retweet {
+  margin-left: .2em;
+  margin-right: .2em;
+}
