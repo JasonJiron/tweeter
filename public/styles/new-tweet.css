@@ -48,8 +48,7 @@ span .counter {
 }
 
 article.tweet {
-  border: solid 1px purple;
-  border-color: #b9b9b9;
+  border:solid 1px #b9b9b9;
   border-radius: .3em; 
 }
 
@@ -90,18 +89,35 @@ article.tweet p#user-tweet {
   font-size: 1.3em;
   text-align: left;
   padding-left: .5em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: solid 1px #b9b9b9;
 }
 
-article.tweet footer p {
-  text-align: left;
-  border-top: solid 1px #b9b9b9;
-  padding-top: .5em;
-  padding-left: .5em;
-  padding-bottom: .5em;
+p#user-tweet {
   margin: 0;
 }
 
+div.icons {
+  margin: 0;
+  align-items: center;
+  display: none;
+}
+
+footer.tweet-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-left: .5em;
+  padding-right: .5em;
+  height: 2em;
+}
+
+footer p {
+  margin: 0;
+  padding-top: .5em;
+}
+
+article.tweet:hover .icons {
+  display: flex;
+}
 
