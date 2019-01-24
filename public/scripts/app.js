@@ -140,4 +140,10 @@ loadTweets((data) => {
   renderTweets(data)
 });
 
+// Toggle's compose tweet in and out of view. re-directs focus to the form.
+$( ".button" ).click(function() {
+  $( ".new-tweet" ).slideToggle( "slow", function() {
+  }).then($('textarea').focus());
+});
+
 
