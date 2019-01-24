@@ -92,8 +92,13 @@ $('form').submit((event) => {
     alert("You gotta enter something")
   } else {
     let newTweet = $('form').serialize();
-    $.post('/tweets', newTweet)
-    $('tweets').load('/tweets', renderTweets)
+    $.post('/tweets', newTweet).then(() => {
+      loadTweets((data) => {
+        $('#all-tweets').empty();
+        renderTweets(data);
+        $(textArea).val('');
+      });
+    })
   }
 });
 
