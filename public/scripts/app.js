@@ -53,97 +53,74 @@ const data = [
 
 let renderTweets = (tweets) => {
   tweets.forEach((tweet) => {
-    $('#all-tweets').append(createArticle(tweet))
+    $('#all-tweets').prepend(createArticle(tweet))
   })
 }
 
 // Data obj destructuring
 let createArticle = ({user:{name, avatars, handle}, content, created_at}) => {
 
-//   return `
-//   <article class="tweet">
-//     <header class="tweet-header">
-//       <div>
-//         <img src=${avatars.small} />
-//         <h2>${name}</h2>
-//       </div>
-//       <p>${handle}</p>
-//     </header>
-//     <p class="user-tweet">${content.text}</p>
-//     <footer class="tweet-footer">
-//      <p>${created_at}</p>
-//      <div class="icons">
-//        <i class="far fa-flag"></i>
-//        <i class="fas fa-retweet"></i>
-//        <i class="far fa-heart"></i>
-//      </div>
-//     </footer>
-//   </article>` 
-// }
-
-  let newTweetArticle = $(' <article class="tweet"></article>')
-  let tweetHeader = $('<header class="tweet-header"></header>')
-  let tweetBody = $(`<p class="user-tweet"></p>`).text(content.text)
-  let tweetP = $(`<p></p>`).text(handle)
-  let tweetFooterP = $(`<p></p>`).text(created_at)
-  let tweetFooter = $('<footer class="tweet-footer"></footer>')
-  let tweetDiv = $('<div></div>')
-  let tweetAvatar = $(`<img src=${avatars.small} />`)
-  let tweetName = $('<h2></h2>').text(name)
-  let tweetIconDiv = $(`
+  let newTweetArticle = $(' <article class="tweet"></article>');
+  let tweetHeader     = $('<header class="tweet-header"></header>');
+  let tweetBody       = $(`<p class="user-tweet"></p>`).text(content.text);
+  let tweetP          = $(`<p></p>`).text(handle);
+  let tweetFooterP    = $(`<p></p>`).text(created_at);
+  let tweetFooter     = $('<footer class="tweet-footer"></footer>');
+  let tweetDiv        = $('<div></div>');
+  let tweetAvatar     = $(`<img src=${avatars.small} />`);
+  let tweetName       = $('<h2></h2>').text(name);
+  let tweetIconDiv    = $(`
     <div class="icons">
       <i class="far fa-flag"></i>
       <i class="fas fa-retweet"></i>
       <i class="far fa-heart"></i>
-    </div>`)
+    </div>`);
   
-  newTweetArticle.append(tweetHeader).append(tweetBody).append(tweetFooter)
-  tweetFooter.append(tweetFooterP).append(tweetIconDiv)
-  
-  tweetHeader.append(tweetDiv).append(tweetP)
-  tweetDiv.append(tweetAvatar).append(tweetName)
+  newTweetArticle.append(tweetHeader).append(tweetBody).append(tweetFooter);
+  tweetFooter.append(tweetFooterP).append(tweetIconDiv);
+  tweetHeader.append(tweetDiv).append(tweetP);
+  tweetDiv.append(tweetAvatar).append(tweetName);
 
-  return newTweetArticle
-}
-
-// renderTweets(data)
+  return newTweetArticle;
+};
 
 $('form').submit((event) => {
   event.preventDefault();
-
   let textArea = ".new-tweet textarea";
-
   if ($(textArea).val().length > 140) {
-    alert("Shorten it up")
+    $("#error" ).text('Shorten it up!')
   } else if ($(textArea).val() === "") {
-    alert("You gotta enter something")
+    $("#error" ).text('Make it longer, eh')
   } else {
     let newTweet = $('form').serialize();
+    $( "#error" ).text('')
     $.post('/tweets', newTweet).then(() => {
       loadTweets((data) => {
         $('#all-tweets').empty();
-        renderTweets(data);
-        $(textArea).val('');
-      });
+        renderTweets(data)
+        $(textArea).val('')
+      })
     })
   }
 });
 
 let loadTweets = (cb) => {
   $.get('/tweets').then((data) => {
-    console.log(data);
+    console.log(data)
     cb(data)
-  });
-} 
+  })
+};
 
 loadTweets((data) => {
   renderTweets(data)
 });
 
-// Toggle's compose tweet in and out of view. re-directs focus to the form.
-$( ".button" ).click(function() {
-  $( ".new-tweet" ).slideToggle( "slow", function() {
-  }).then($('textarea').focus());
+$(".new-tweet").slideUp();
+$(".button").click(() => {
+  $(".new-tweet").slideToggle("slow");
+  $('form textarea').focus();
 });
 
-
+$(".new-tweet").click(() => {
+  $("#error").text('')
+});

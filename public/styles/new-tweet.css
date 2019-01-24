@@ -14,7 +14,6 @@ section p#error {
   margin-left: .6em;
   color: #c47c88;
   font-weight: bold;
-  /* border: solid 1px red */
 }
 
 section#all-tweets {

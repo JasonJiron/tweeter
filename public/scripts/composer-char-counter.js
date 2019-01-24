@@ -9,5 +9,5 @@ $(textArea).keyup(function() {
   } else if (inputLength < 140) {
     counter.css('color', 'black')
   }
-})
+});
 
