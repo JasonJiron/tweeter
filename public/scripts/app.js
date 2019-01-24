@@ -3,6 +3,7 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
 const data = [
   {
     "user": {
@@ -56,30 +57,56 @@ let renderTweets = (tweets) => {
   })
 }
 
+// Data obj destructuring
 let createArticle = ({user:{name, avatars, handle}, content, created_at}) => {
 
-  return `
-  <article class="tweet">
-    <header class="tweet-header">
-      <div>
-        <img src=${avatars.small} />
-        <h2>${name}</h2>
-      </div>
-      <p>${handle}</p>
-    </header>
-    <p class="user-tweet">${content.text}</p>
-    <footer class="tweet-footer">
-      <p>${created_at}</p>
-      <div class="icons">
-        <i class="far fa-flag"></i>
-        <i class="fas fa-retweet"></i>
-        <i class="far fa-heart"></i>
-      </div>
-    </footer>
-  </article>` 
+//   return `
+//   <article class="tweet">
+//     <header class="tweet-header">
+//       <div>
+//         <img src=${avatars.small} />
+//         <h2>${name}</h2>
+//       </div>
+//       <p>${handle}</p>
+//     </header>
+//     <p class="user-tweet">${content.text}</p>
+//     <footer class="tweet-footer">
+//      <p>${created_at}</p>
+//      <div class="icons">
+//        <i class="far fa-flag"></i>
+//        <i class="fas fa-retweet"></i>
+//        <i class="far fa-heart"></i>
+//      </div>
+//     </footer>
+//   </article>` 
+// }
+
+  let newTweetArticle = $(' <article class="tweet"></article>')
+  let tweetHeader = $('<header class="tweet-header"></header>')
+  let tweetBody = $(`<p class="user-tweet"></p>`).text(content.text)
+  let tweetP = $(`<p></p>`)
+  let tweetFooterP = $(`<p></p>`).text(created_at)
+  let tweetFooter = $('<footer class="tweet-footer"></footer>')
+  let tweetDiv = $('<div></div>')
+  let tweetAvatar = $(`<img src=${avatars.small} />`)
+  let tweetName = $('<h2></h2>').text(name)
+  let tweetIconDiv = $(`
+    <div class="icons">
+      <i class="far fa-flag"></i>
+      <i class="fas fa-retweet"></i>
+      <i class="far fa-heart"></i>
+    </div>`)
+  
+  newTweetArticle.append(tweetHeader).append(tweetBody).append(tweetFooter)
+  tweetFooter.append(tweetFooterP).append(tweetIconDiv)
+  
+  tweetHeader.append(tweetDiv).append(tweetP)
+  tweetDiv.append(tweetAvatar).append(tweetName)
+
+  return newTweetArticle
 }
 
-renderTweets(data)
+// renderTweets(data)
 
 $('form').submit((event) => {
   event.preventDefault();
@@ -112,11 +139,3 @@ let loadTweets = (cb) => {
 loadTweets((data) => {
   renderTweets(data)
 });
-
-// $(selector).load(URL,data,callback);
-
-// $(document).ready(function(){
-//   $("button").click(function(){
-//     $("#div1").load("demo_test.txt #p1");
-//   });
-// });
