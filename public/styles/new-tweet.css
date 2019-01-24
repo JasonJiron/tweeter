@@ -8,6 +8,15 @@ section.new-tweet {
   margin-top: 7em;
 }
 
+section p#error {
+  float: left;
+  margin: .3em;
+  margin-left: .6em;
+  color: #c47c88;
+  font-weight: bold;
+  /* border: solid 1px red */
+}
+
 section#all-tweets {
   border-radius: .3em; 
   height: 100%;
