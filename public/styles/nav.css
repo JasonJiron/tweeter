@@ -21,3 +21,20 @@
   vertical-align: middle;
   margin-left: 10px;
 }
+
+#nav-bar .button {
+  font-size: 1.7em;
+  vertical-align: middle;
+  border-radius: .4em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  float: right;
+  margin-top: .32em;
+  color: #00a087;
+  background-color: rgb(222, 250, 250)
+}
+
+#nav-bar .button:hover {
+color: black;
+background-color: white;
+} 
