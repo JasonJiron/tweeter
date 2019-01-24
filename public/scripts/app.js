@@ -84,7 +84,7 @@ let createArticle = ({user:{name, avatars, handle}, content, created_at}) => {
   let newTweetArticle = $(' <article class="tweet"></article>')
   let tweetHeader = $('<header class="tweet-header"></header>')
   let tweetBody = $(`<p class="user-tweet"></p>`).text(content.text)
-  let tweetP = $(`<p></p>`)
+  let tweetP = $(`<p></p>`).text(handle)
   let tweetFooterP = $(`<p></p>`).text(created_at)
   let tweetFooter = $('<footer class="tweet-footer"></footer>')
   let tweetDiv = $('<div></div>')
