@@ -50,8 +50,6 @@ const data = [
   }
 ];
 
-// let newTweet = tweetData.content.text
-
 let renderTweets = (tweets) => {
   tweets.forEach((tweet) => {
     $('#all-tweets').append(createArticle(tweet))
@@ -83,12 +81,20 @@ let createArticle = ({user:{name, avatars, handle}, content, created_at}) => {
 
 renderTweets(data)
 
-
-
 $('form').submit((event) => {
   event.preventDefault();
-  let newTweetText = $('form').serialize();
-  $.post('/tweets', newTweetText)
+
+  let textArea = ".new-tweet textarea";
+
+  if ($(textArea).val().length > 140) {
+    alert("Shorten it up")
+  } else if ($(textArea).val() === "") {
+    alert("You gotta enter something")
+  } else {
+    let newTweet = $('form').serialize();
+    $.post('/tweets', newTweet)
+    $('tweets').load('/tweets', renderTweets)
+  }
 });
 
 let loadTweets = (cb) => {
@@ -96,8 +102,16 @@ let loadTweets = (cb) => {
     console.log(data);
     cb(data)
   });
-}
+} 
 
 loadTweets((data) => {
   renderTweets(data)
-})
+});
+
+// $(selector).load(URL,data,callback);
+
+// $(document).ready(function(){
+//   $("button").click(function(){
+//     $("#div1").load("demo_test.txt #p1");
+//   });
+// });

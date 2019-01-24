@@ -1,5 +1,3 @@
-console.log('this is your script file here');
-
 let textArea = ".new-tweet textarea";
 
 $(textArea).keyup(function() {
@@ -13,7 +11,3 @@ $(textArea).keyup(function() {
   }
 })
 
-//  minus (this.placeholder.length)
-
-// this.value.length -> length of input
-// this.innerText -> character count value
